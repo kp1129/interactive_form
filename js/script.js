@@ -1,8 +1,6 @@
-/****************************************
-          Treehouse Techdegree
-    FSJS project 3 - Interactive Form
-****************************************/
-
+/*****************
+BASIC INFO SECTION
+******************/
 // First things first! Assign focus to the first input element for better UX
 $('#name').focus();
 
@@ -20,6 +18,9 @@ $('[name="user_title"]').on('change', function(){
   }
 });
 
+/*******************
+T-SHIRT INFO SECTION
+********************/
 // Ensure that the t-shirt color options are consistent with the
 // theme option selected under Design
 $('[name="user_design"]').on('change', function(){
@@ -38,31 +39,22 @@ $('[name="user_design"]').on('change', function(){
   }
 });
 
-////////////////////////////
-const $runningTotal = $('<span>Total: </span>');
+/******************************
+REGISTER FOR ACTIVITIES SECTION
+*******************************/
+let $runningTotal = $(`<span>Total: $ 0 </span>`);
 $('.activities').append($runningTotal);
 
+// This function returns the cost of each activity.
 function cost(str){
   const amount = str.slice(-3);
   return parseInt(amount);
 }
-///////////////////////////
 
-// Ensure that users don't accidentally sign up for activities that take place
-// at the same time
+// Prevent users from booking multiple activities for the same time block
 $('[type=checkbox]').change(function(){
     const activityName = $(this).attr('name');
-    const value = $(this).val();
     switch (activityName) {
-      case "all":
-      //figure out how to get the content from checkbox inputs
-      //then run function cost on each string, and either add or subtract
-      //from total depending on whether or not the box is checked
-
-
-
-        //////
-        break;
         case "js-frameworks":
           $(this).parent().next().next().toggleClass('unavailable');
           break;
@@ -75,6 +67,19 @@ $('[type=checkbox]').change(function(){
         case "node":
           $(this).parent().prev().prev().toggleClass('unavailable');
       }
+
+      // Update the total cost based on the user's activities selections
+      let total = 0;
+      $('[type=checkbox]').each(function(){
+        if ($(this).is(':checked')){
+          const value = $(this).parent().text();
+          const price = cost(value);
+          total += price;
+        }
+      });
+      $runningTotal.html(`<span>Total: $ ${total} </span>`);
 });
 
-// Keep a running total
+/*******************
+PAYMENT INFO SECTION
+********************/
