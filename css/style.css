@@ -157,6 +157,10 @@ button:active {
   pointer-events: none;
 }
 
+.alert {
+  border: 3px solid red;
+}
+
 /* =================================
   Media Queries
 ==================================== */
