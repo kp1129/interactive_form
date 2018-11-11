@@ -14,8 +14,8 @@ button {
 
 body {
   font: 1em/1.5;
-  color: #184f68;
-	background: #accbd9;
+  color: #2c3837;
+	background: #FFFFFF;
 }
 
 header {
@@ -23,7 +23,7 @@ header {
 }
 
 h1 {
-	font-size: 2.5em;
+	font-size: 2.75em;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
 	margin: 0;
 }
@@ -38,7 +38,7 @@ a {
 
 form {
 	padding: .875em 1.875em 1.875em;
-	background: #85b5ca;
+	background: #f5f6f9;
 }
 
 fieldset,
@@ -54,13 +54,13 @@ fieldset {
 
 legend,
 button {
-	font-size: 1.25em;
+	font-size: 1.5em;
 }
 
 legend {
 	font-weight: 500;
 	padding-top: .5em;
-	border-top: 2px solid #679cb3;
+	border-top: 2px solid #7e7174;
 	margin-bottom: 1.125em;
 }
 
@@ -85,14 +85,14 @@ input {
 	font-size: 1em;
 	font-weight: 500;
 	padding: .8em;
-	background: #c1deeb;
-	border: 2px solid #c1deeb;
+	background: #d7d4d8;
+	border: 2px solid #7e71744d;
 	outline: none;
 }
 
 input:focus {
 	background: #fff;
-	border-color: #5e97b0;
+	border-color: #7e7174;
 	transition: border-color .4s, background-color .4s;
 }
 
@@ -102,15 +102,17 @@ input[type="radio"] {
 }
 
 button {
-	color: #fff;
+	color: #FFFFFF;
 	padding: .55em 1.25em;
-	background: #22627e;
+	background: #98b243;
 	margin: 1.25em 0 .5em;
 	cursor: pointer;
+  box-shadow: 1px 1px 1.5px 2px #87a22e;
 }
 
-button:hover {
-	background: #184c62;
+button:active {
+  transform: scale(1.05);
+  outline: 0;
 }
 
 /* =================================
