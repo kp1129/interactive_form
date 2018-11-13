@@ -100,11 +100,13 @@ $('[name="user_design"]').on('change', function(){
     $colors.show();
     //edit the code below to reflect that we now have a const for this selector
     $('#color').children().show();
+    $('#color option').eq(0).attr('selected', true);
     $('#color option').eq(3).hide();
     $('#color option').eq(4).hide();
     $('#color option').eq(5).hide();
   } else if ($(this).val() === "heart js"){
     $('#color').children().show();
+    $('#color option').eq(3).attr('selected', true);
     $('#color option').eq(0).hide();
     $('#color option').eq(1).hide();
     $('#color option').eq(2).hide();
@@ -176,5 +178,7 @@ $('button').on('click', function(e){
   const creditCardError = invalidCreditCard();
   if (nameError || emailError || activitiesError || creditCardError){
     e.preventDefault();
+  } else {
+    $('form').submit();
   }
 })
