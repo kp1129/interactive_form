@@ -95,8 +95,6 @@ function invalidCreditCard() {
         if (ccError || zcError || cvvError){
           return true;
         }
-
-
   }
 }
 
