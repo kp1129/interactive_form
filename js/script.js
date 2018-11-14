@@ -8,7 +8,6 @@ const $bitcoin = $('#credit-card').next().next();
 // unless a certain option is selected
 $('#other-role').prev().hide();
 $('#other-role').hide();
-$colors.hide();
 $paypal.hide();
 $bitcoin.hide();
 
@@ -27,6 +26,9 @@ function invalidName(){
   if ($('#name').val() === ""){
     $('#name').addClass('alert');
     return true;
+  } else {
+    $('#name').removeClass('alert');
+    return false;
   }
 }
 // validate Email input
@@ -34,44 +36,67 @@ function invalidEmail(){
   const emailRegex = /^(\w)+@(\w)+.(\w)+$/;
   const $email = $('#mail').val();
   if(emailRegex.test($email) === false || $email === ""){
-    const $emailErrorMessage = $('<span>Please enter a vaild email address</span>');
-    $emailErrorMessage.addClass('alert-message');
-    $emailErrorMessage.insertAfter('#mail');
     $('#mail').addClass('alert');
     return true;
+  } else {
+    $('#mail').removeClass('alert');
+    return false;
   }
 }
 // validate Activities input
 function invalidActivities(){
   if($('input:checked').length === 0){
-    const $alertMessage = $('<span>You must register for at least one activity</span>');
-    $alertMessage.addClass('alert-message');
-    $alertMessage.insertAfter('.activities legend');
+    $('.activities legend').addClass('alert-message');
+    $runningTotal.addClass('alert-message');
     return true;
+  } else {
+    $('.activities legend').removeClass('alert-message');
+    $runningTotal.removeClass('alert-message');
+    return false;
   }
 }
 // validate credit card input
-function invalidCreditCard() {
-  if ($('#payment option:selected').val() === "credit card"){
-    // regex patterns
-    const creditCardRegex = /^(\d){13,16}$/;
-    const zipcodeRegex = /^(\d){5}$/;
-    const cvvRegex = /^(\d){3}$/;
-    // user input
-    const $creditCard = $('#cc-num').val();
-    const $zipcode = $('#zip').val();
-    const $cvv = $('#cvv').val();
-    // compare
-    if(creditCardRegex.test($creditCard) === false){
-      $('#cc-num').addClass('alert');
-    }
-    if(zipcodeRegex.test($zipcode) === false){
-      $('#zip').addClass('alert');
-    }
-    if(cvvRegex.test($cvv) === false){
-      $('#cvv').addClass('alert');
-    }
+function creditcardRegexTest() {
+  const creditCardRegex = /^(\d){13,16}$/;
+  const $creditCard = $('#cc-num').val();
+  if(creditCardRegex.test($creditCard) === false){
+    $('#cc-num').addClass('alert');
     return true;
+  } else {
+    $('#cc-num').removeClass('alert');
+  }
+}
+function zipcodeRegexTest() {
+  const zipcodeRegex = /^(\d){5}$/;
+  const $zipcode = $('#zip').val();
+  if(zipcodeRegex.test($zipcode) === false){
+    $('#zip').addClass('alert');
+    return true;
+  } else {
+    $('#zip').removeClass('alert');
+  }
+}
+function cvvRegexTest(){
+  const cvvRegex = /^(\d){3}$/;
+  const $cvv = $('#cvv').val();
+  if(cvvRegex.test($cvv) === false){
+    $('#cvv').addClass('alert');
+    return true;
+  } else {
+    $('#cvv').removeClass('alert');
+  }
+}
+function invalidCreditCard() {
+  if ($('#payment option:selected').val() === "credit card" ||
+      $('#payment option:selected').val() === "select_method"){
+        const ccError = creditcardRegexTest();
+        const zcError = zipcodeRegexTest();
+        const cvvError = cvvRegexTest();
+        if (ccError || zcError || cvvError){
+          return true;
+        }
+
+
   }
 }
 
@@ -97,21 +122,19 @@ T-SHIRT INFO SECTION
 // theme option selected under Design
 $('[name="user_design"]').on('change', function(){
   if ($(this).val() === "js puns"){
-    $colors.show();
-    //edit the code below to reflect that we now have a const for this selector
-    $('#color').children().show();
     $('#color option').eq(0).attr('selected', true);
+    $('#color option').eq(3).attr('selected', false);
+    $('#color').children().show();
     $('#color option').eq(3).hide();
     $('#color option').eq(4).hide();
     $('#color option').eq(5).hide();
   } else if ($(this).val() === "heart js"){
-    $('#color').children().show();
     $('#color option').eq(3).attr('selected', true);
+    $('#color option').eq(0).attr('selected', false);
+    $('#color').children().show();
     $('#color option').eq(0).hide();
     $('#color option').eq(1).hide();
     $('#color option').eq(2).hide();
-  } else {
-    $colors.hide();
   }
 });
 

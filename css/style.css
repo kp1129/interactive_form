@@ -164,7 +164,6 @@ button:active {
 .alert-message {
   color: red;
   position: relative;
-  top: -15px;
 }
 /* =================================
   Media Queries
