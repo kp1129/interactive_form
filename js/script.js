@@ -8,6 +8,7 @@ const $bitcoin = $('#credit-card').next().next();
 // unless a certain option is selected
 $('#other-role').prev().hide();
 $('#other-role').hide();
+$colors.hide();
 $paypal.hide();
 $bitcoin.hide();
 
@@ -95,8 +96,6 @@ function invalidCreditCard() {
         if (ccError || zcError || cvvError){
           return true;
         }
-
-
   }
 }
 
@@ -121,6 +120,7 @@ T-SHIRT INFO SECTION
 // Ensure that the t-shirt color options are consistent with the
 // theme option selected under Design
 $('[name="user_design"]').on('change', function(){
+  $colors.show();
   if ($(this).val() === "js puns"){
     $('#color option').eq(0).attr('selected', true);
     $('#color option').eq(3).attr('selected', false);
@@ -135,6 +135,8 @@ $('[name="user_design"]').on('change', function(){
     $('#color option').eq(0).hide();
     $('#color option').eq(1).hide();
     $('#color option').eq(2).hide();
+  } else {
+    $colors.hide();
   }
 });
 
