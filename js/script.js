@@ -34,7 +34,7 @@ function invalidName(){
 }
 // validate Email input
 function invalidEmail(){
-  const emailRegex = /^(\w)+@(\w)+.(\w)+$/;
+  const emailRegex = /^(\w)+@(\w)+\.(\w)+$/;
   const $email = $('#mail').val();
   if(emailRegex.test($email) === false || $email === ""){
     $('#mail').addClass('alert');
@@ -174,10 +174,11 @@ $('[type=checkbox]').change(function(){
 /*******************
 PAYMENT INFO SECTION
 ********************/
+$('#payment option').eq(0).attr('disabled', 'disabled');
+$('#payment option').eq(1).attr('selected', true);
 // Display relevant payment instructions depending on
 // how the user wants to pay
 $('[name="user_payment"]').on('change', function(){
-  $('#payment option').eq(0).attr('disabled', 'disabled');
   if ($(this).val() === "credit card"){
     $creditCard.show();
     $paypal.hide();
